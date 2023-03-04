@@ -9,6 +9,10 @@ const server = express();
 server.use(express.json());
 server.use("/api/v1/token", tokenRouter);
 
+server.get("/", (request, response) => {
+    response.send("hit successful!");
+})
+
 server.listen(process.env.PORT, () => {
     console.log("Listening on port", process.env.PORT);
 })
