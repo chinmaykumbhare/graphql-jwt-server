@@ -1,4 +1,5 @@
 import express from "express";
+import https from "https";
 import { config } from "dotenv";
 import tokenRouter from "./routes/token.js";
 import { Password } from "./services/password.js";
@@ -13,7 +14,14 @@ server.get("/", (request, response) => {
     response.send("hit successful!");
 })
 
-server.listen(process.env.PORT, () => {
+/**
+ * @TODO
+ * add SSL Cert -> private key + cert
+ */
+
+const httpsServer = https.createServer({}, server);
+
+httpsServer.listen(process.env.PORT, () => {
     console.log("Listening on port", process.env.PORT);
 })
 
